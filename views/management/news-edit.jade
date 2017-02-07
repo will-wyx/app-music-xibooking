@@ -1,0 +1,140 @@
+extends layout
+block head
+    link(href='/bootstrap-wysiwyg/bootstrap-combined.no-icons.min.css', rel='stylesheet')
+    link(href='/bootstrap-wysiwyg/bootstrap-responsive.min.css', rel='stylesheet')
+    link(href='/bootstrap-wysiwyg/font-awesome/css/font-awesome.css', rel='stylesheet')
+    link(href='/stylesheets/management/news-edit.css', rel='stylesheet')
+block content
+    div.container
+        input#input_id(type='hidden', value= news._id)
+        form.form-horizontal(role='form')
+            .form-group
+                label.col-sm-2.control-label(for='input_title') 文章标题
+                .col-sm-10
+                    input#input_title.form-control(type='text', placeholder='标题', value= news.title)
+            .form-group
+                .col-sm.col-sm-12
+                    .hero-unit
+                        .btn-toolbar(data-role='editor-toolbar', data-target='#editor')
+                            .btn-group
+                                a.btn.dropdown-toggle(data-toggle='dropdown', title='Font Size')
+                                    i.icon-text-height
+                                    b.caret
+                                ul.dropdown-menu
+                                    li
+                                        a(data-edit='fontSize 5')
+                                            span(style='font-size: large; ') Huge
+                                    li
+                                        a(data-edit='fontSize 3')
+                                            span(style='font-size: small; ') Normal
+                                    li
+                                        a(data-edit='fontSize 1')
+                                            span(style='font-size: xx-small; ') Small
+                            .btn-group
+                                a.btn(data-edit='bold', title='Bold (Ctrl/Cmd+B)')
+                                    i.icon-bold
+                                a.btn(data-edit='italic', title='Italic (Ctrl/Cmd+I)')
+                                    i.icon-italic
+                                a.btn(data-edit='strikethrough', title='Strikethrough')
+                                    i.icon-strikethrough
+                                a.btn(data-edit='underline', title='Underline (Ctrl/Cmd+U)')
+                                    i.icon-underline
+                            .btn-group
+                                a.btn(data-edit='insertunorderedlist', title='Bullet list')
+                                    i.icon-list-ul
+                                a.btn(data-edit='insertorderedlist', title='Number list')
+                                    i.icon-list-ol
+                                a.btn(data-edit='outdent', title='Reduce indent (Shift+Tab)')
+                                    i.icon-indent-left
+                                a.btn(data-edit='indent', title='Indent (Tab)')
+                                    i.icon-indent-right
+                            .btn-group
+                                a.btn(data-edit='justifyleft', title='Align Left (Ctrl/Cmd+L)')
+                                    i.icon-align-left
+                                a.btn(data-edit='justifycenter', title='Center (Ctrl/Cmd+E)')
+                                    i.icon-align-center
+                                a.btn(data-edit='justifyright', title='Align Right (Ctrl/Cmd+R)')
+                                    i.icon-align-right
+                                a.btn(data-edit='justifyfull', title='Justify (Ctrl/Cmd+J)')
+                                    i.icon-align-justify
+                            .btn-group
+                                a.btn.dropdown-toggle(data-toggle='dropdown', title='Hyperlink')
+                                    i.icon-link
+                                .dropdown-menu.input-append
+                                    input.span2(placeholder='URL', type='text', data-edit='createLink')
+                                    button.btn(type='button') Add
+                                a.btn(data-edit='unlink', title='Remove Hyperlink')
+                                    i.icon-cut
+                            .btn-group
+                                a#pictureBtn.btn(title='Insert picture (or just drag & drop)')
+                                    i.icon-picture
+                                input(type='file', data-role='magic-overlay', data-target='#pictureBtn', data-edit='insertImage')
+                            .btn-group
+                                a.btn(data-edit='undo', title='Undo (Ctrl/Cmd+Z)')
+                                    i.icon-undo
+                                a.btn(data-edit='redo', title='Redo (Ctrl/Cmd+Y)')
+                                    i.icon-repeat
+                        #editor!= news.content
+            .form-group
+                .col-sm-offset-10.col-sm-2
+                    button#btn_submit.btn.btn-default(type='button').btn-block 提交
+
+block footer
+    script(src='/bootstrap-wysiwyg/jquery.hotkeys.js')
+    script(src='/bootstrap-wysiwyg/bootstrap-wysiwyg.js')
+    script.
+        (function () {
+            function initToolbarBootstrapBindings() {
+                $('a[title]').tooltip({container: 'body'});
+                $('.dropdown-menu input').click(function () {
+                    return false;
+                })
+                    .change(function () {
+                        $(this).parent('.dropdown-menu').siblings('.dropdown-toggle').dropdown('toggle');
+                    })
+                    .keydown('esc', function () {
+                        this.value = '';
+                        $(this).change();
+                    });
+                $('[data-role=magic-overlay]').each(function () {
+                    var overlay = $(this), target = $(overlay.data('target'));
+                    overlay.css('opacity', 0).css('position', 'absolute').offset(target.offset()).width(target.outerWidth()).height(target.outerHeight());
+                });
+            };
+            function showErrorAlert(reason, detail) {
+                var msg = '';
+                if (reason === 'unsupported-file-type') {
+                    msg = "Unsupported format " + detail;
+                }
+                else {
+                    console.log("error uploading file", reason, detail);
+                }
+                $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                    '<strong>File upload error</strong> ' + msg + ' </div>').prependTo('#alerts');
+            };
+            initToolbarBootstrapBindings();
+            var $editor = $('#editor');
+            $editor.wysiwyg({fileUploadError: showErrorAlert});
+            window.prettyPrint && prettyPrint();
+
+            var $input_id = $('#input_id');
+            var $input_title = $('#input_title');
+            $('#btn_submit').on('click', function () {
+                var title = $input_title.val();
+                var content = $editor.html();
+                var id = $input_id.val();
+                var method = id.length > 0 ? 'PUT' : 'POST';
+                $.ajax({
+                    url: '/api/management/news',
+                    data: {
+                        id: id,
+                        title: title,
+                        content: content
+                    },
+                    type: method,
+                    success: function (res) {
+                        location.href = '/management/news/';
+                    }
+                });
+            });
+        })();

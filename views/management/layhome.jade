@@ -1,0 +1,141 @@
+extends layout
+block head
+    link(rel='stylesheet', href='/bootstrap-fileinput-4.3.6/css/fileinput.min.css')
+block content
+    #photoModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='photoModalLabel', aria-hidden='true')
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal')
+                        span(aria-hidden='true') ×
+                        span.sr-only Close
+                    h4.modal-title 上传
+                .modal-body
+                    form#formPhoto(enctype='multipart/form-data')
+                        input#inputPhoto.file(type='file', name='file', data-allowed-file-extensions='["png", "jpg"]')
+    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+        .modal-dialog.modal-sm
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal')
+                        span(aria-hidden='true') ×
+                        span.sr-only Close
+                    h4#myModalLabel.modal-title 提示
+                .modal-body
+                    p 确定删除
+                        span#modal_id
+                        | 吗
+                .modal-footer
+                    button#btn_ok.btn.btn-primary(type='button') 确定
+                    button.btn.btn-default(type='button', data-dismiss='modal') 取消
+    .container#container
+        .panel.panel-default
+            .panel-heading 图片轮播
+                a.js-slider-new.pull-right.btn.btn-link.btn-xs(href='javascript:;') 新增
+            table.table.table-striped
+                thead
+                    tr
+                        th.col-md-2 #
+                        th.col-md-4 图片
+                        th.col-md-4 链接
+                        th.col-md-2 操作
+                tbody#slider
+                    each item in home.slider
+                        tr
+                            td
+                                a.btn.btn-link.btn-lg(href='javascript:;')
+                                    span.glyphicon.glyphicon-circle-arrow-up
+                                a.btn.btn-link.btn-lg(href='javascript:;')
+                                    span.glyphicon.glyphicon-circle-arrow-down
+                            td
+                                .row
+                                    .col-md-12
+                                        a.js-img.thumbnail(href='javascript:;')
+                                            img(style='width: 100%; display: block;', src=item.src, data-holder-rendered='true')
+                            td
+                                input.form-control(type='url', value=item.href)
+                            td
+                                a.js-operation.btn.btn-link.btn-xs(href='javascript:;') 删除
+        .panel.panel-default
+            .panel-heading 首页布局
+                a.js-banner-new.pull-right.btn.btn-link.btn-xs(href='javascript:;') 新增
+            table.table.table-striped
+                thead
+                    tr
+                        th.col-md-2 #
+                        th.col-md-4 图片
+                        th.col-md-4 链接
+                        th.col-md-2 编辑
+                tbody#banner
+                    each item in home.banners
+                        tr
+                            td
+                                a.btn.btn-link.btn-lg(href='javascript:;')
+                                    span.glyphicon.glyphicon-circle-arrow-up
+                                a.btn.btn-link.btn-lg(href='javascript:;')
+                                    span.glyphicon.glyphicon-circle-arrow-down
+                            td
+                                .row
+                                    .col-md-12
+                                        a.js-img.thumbnail(href='javascript:;')
+                                            img(style='width: 100%; display: block;', src=item.src, data-holder-rendered='true')
+                            td
+                                input.form-control(type='url', value=item.href)
+                            td
+                                a.js-operation.btn.btn-link.btn-xs(href='javascript:;') 删除
+block footer
+    script(src='/bootstrap-fileinput-4.3.6/js/plugins/canvas-to-blob.js')
+    script(src='/bootstrap-fileinput-4.3.6/js/plugins/sortable.js')
+    script(src='/bootstrap-fileinput-4.3.6/js/plugins/purify.js')
+    script(src='/bootstrap-fileinput-4.3.6/js/fileinput.js')
+    script(src='/bootstrap-fileinput-4.3.6/js/locales/zh.js')
+    script.
+        (function () {
+            var $photoModal = $('#photoModal');
+            var $myModal = $('#myModal');
+            var $container = $('#container');
+            var $slider = $('#slider');
+            var $banner = $('#banner');
+            var $inputPhoto = $('#inputPhoto');
+            $inputPhoto.fileinput({
+                language: 'zh',
+                uploadUrl: '/api/management/layout-upload'
+            });
+            $inputPhoto.on('fileuploaded', function(e, r, t) {
+                $inputPhoto.target.src = r.response.path;
+                $photoModal.modal('hide');
+            });
+
+            $container.on('click', function (e) {
+                var $target = $(e.target);
+                if ($target.parents('.js-img').length) {
+                    $photoModal.modal('show');
+                    var img = $target.parents('.js-img').children('img');
+                    $inputPhoto.target = img[0];
+                } else if ($target.filter('.js-operation').length) {
+                    $myModal.modal('show');
+                } else if ($target.filter('.js-slider-new').length) {
+                    $slider.append(tr);
+                } else if ($target.filter('.js-banner-new').length) {
+                    $banner.append(tr);
+                }
+            });
+            var row = [], col1 = [], col2 = [], col3 = [], col4 = [];
+            col1.push('<a class="btn btn-link btn-lg" href="javascript:;"><span class="glyphicon glyphicon-circle-arrow-up"></span></a>');
+            col1.push('<a class="btn btn-link btn-lg" href="javascript:;"><span class="glyphicon glyphicon-circle-arrow-down"></span></a>');
+            col2.push('<div class="row"><a class="js-img thumbnail" href="javascript:;"><img style="width: 100%; display: block;" src="/images/placeholder.png" data-holder-rendered="true" /></a></div>')
+            col3.push('<input class="form-control" type="url"/>');
+            col4.push('<a class="js-operation btn btn-link btn-xs" href="javascript:;">保存</a>')
+            row.push('<td>' + col1.join('') + '</td>');
+            row.push('<td>' + col2.join('') + '</td>');
+            row.push('<td>' + col3.join('') + '</td>');
+            row.push('<td>' + col4.join('') + '</td>');
+
+            var tr = '<tr>' + row.join('') + '</tr>';
+
+            var $formPhoto = $('#formPhoto');
+            $formPhoto.on('submit', function(){
+                $inputPhoto.fileinput('upload');
+                return false;
+            });
+        })();

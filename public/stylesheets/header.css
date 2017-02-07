@@ -1,0 +1,67 @@
+.top-bar {
+    background-color: #181818;
+    box-sizing: border-box;
+    height: 88px;
+    width: 100%;
+    border-top: 4px solid #004b62;
+    position: relative;
+    z-index: 999;
+}
+
+.top-bar > div.wrapper {
+    width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.top-bar a.logo {
+    float: left;
+    /*padding: 22px 0 26px;*/
+    width: 228px;
+    height: 84px;
+}
+
+.top-bar a.logo img {
+    /*width: 100%;*/
+    height: 100%;
+    padding: 22px;
+}
+
+.top-bar nav {
+    float: left;
+    height: 84px;
+}
+
+.top-bar nav li {
+    display: inline-block;
+    padding: 22px 0;
+    margin-left: 47px;
+}
+
+.top-bar nav a {
+    color: #bbb;
+    font-size: 14px;
+    text-align: center;
+    text-shadow: 1px 1px 1px #000;
+    transition: color 350ms 300ms ease;
+}
+
+.top-bar nav a.current, .top-bar nav a:hover {
+    text-decoration: none;
+    color: #feca2e;
+}
+
+.top-bar nav span {
+    height: 20px;
+    line-height: 20px;
+    display: block;
+}
+
+.top-bar .search-wrapper {
+    float: right;
+}
+
+.faq {
+    padding: 0 0 0 12px;
+    color: #bbb;
+}

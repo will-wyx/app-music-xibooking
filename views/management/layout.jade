@@ -1,0 +1,75 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title= 'XIRECORD MANAGEMENT'
+        link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/stylesheets/header.css')
+        block head
+    body
+        nav.navbar.navbar-default(role='navigation')
+            .container-fluid
+                // Brand and toggle get grouped for better mobile display
+                .navbar-header
+                    button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href='/management') XiRecord
+                // Collect the nav links, forms, and other content for toggling
+                #bs-example-navbar-collapse-1.collapse.navbar-collapse
+                    ul.nav.navbar-nav
+                        if role.news
+                            li(class="#{path=='/news'?'active':''}")
+                                a(href='/management/news') 新闻
+                        if role.label
+                            li(class="#{path=='/label'?'active':''}")
+                                a(href='/management/label') 厂牌
+                        if role.artist
+                            li(class="#{path=='/artist'?'active':''}")
+                                a(href='/management/artist') 艺人
+                        if role.album
+                            li(class="#{path=='/album'?'active':''}")
+                                a(href='/management/album') 专辑
+                        if role.media
+                            li(class="#{path=='/media'?'active':''}")
+                                a(href='/management/media') 音乐
+                        if role.form
+                            li(class="dropdown #{path == '/form' ? 'active' : ''}")
+                                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                                    | 用户表单
+                                    span.caret
+                                ul.dropdown-menu(role='menu')
+                                    li
+                                        a(href='/management/form/business') 专业服务
+                                    li
+                                        a(href='/management/form/booking') 音乐发行
+                                    li
+                                        a(href='/management/form/contact') 联系我们
+                        if role.layout
+                            li(class="dropdown #{path=='/layout'?'active':''}")
+                                a.dropdown-toggle(href='#', data-toggle='dropdown')
+                                    | 版面管理
+                                    span.caret
+                                ul.dropdown-menu(role='menu')
+                                    li
+                                        a(href='/management/layout/index') 首页
+                                    li
+                                        a(href='/management/layout/service') 专业服务
+                                    li
+                                        a(href='/management/layout/reserve') 推广/合作
+                                    li
+                                        a(href='/management/layout/contact') 联系我们
+                        if role.manager
+                            li(class="#{path == '/manager' ? 'active' : ''}")
+                                a(href='/management/manager') 用户管理
+                    p.navbar-text.navbar-right
+                        a.navbar-link(href='/management/logout') 注销
+        block content
+        script(src='/javascripts/jquery-3.1.1.min.js')
+        script(src='/bootstrap/js/bootstrap.min.js')
+        script(src='/javascripts/hashchange.js')
+        block footer

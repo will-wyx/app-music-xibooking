@@ -1,0 +1,11 @@
+extends layout
+
+block head
+    link(rel='stylesheet', href='/stylesheets/news.css')
+block content
+    div.container
+        div.wrapper
+            h1= news.title
+            p.date= news.date
+            article
+                != news.content

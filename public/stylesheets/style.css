@@ -1,0 +1,104 @@
+*, :after, :before {
+    box-sizing: inherit;
+}
+
+html, body {
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+body {
+    background-color: #fafafa;
+    color: #333;
+    font: 14px San Francisco Text, Helvetica Neue, PingFang SC, PingFang TC, Heiti SC, Heiti TC, Arial, Microsoft Yahei;
+}
+
+blockquote, body, button, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, li, ol, p, pre, td, textarea, th, ul {
+    margin: 0;
+    padding: 0;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+img {
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    min-height: 100%;
+    position: relative;
+}
+
+a.btn {
+    width: 180px;
+    height: 20px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 2px;
+    font-size: 20px;
+    color: #00b9f2;
+    padding: 20px;
+}
+
+a.btn.dark {
+    background-color: #00b9f2;
+    color: #fff;
+}
+
+.search-wrapper {
+    display: block;
+    padding: 21px 0;
+}
+
+.search-input-wrapper {
+    height: 40px;
+    line-height: 40px;
+    width: 280px;
+    display: inline-block;
+    background: #f8f8f8;
+    border: 1px solid #e5e5e5;
+    border-radius: 2px;
+    color: #9b9b9b;
+    padding: 0 20px;
+    position: relative;
+}
+
+.search-input-wrapper .icon-search {
+    background-image: url("/images/icons/ic_search.svg");
+    background-size: 14px 14px;
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+    vertical-align: middle;
+    position: relative;
+    top: -2px;
+}
+
+.search-input-wrapper input {
+    border: none;
+    outline: none;
+    line-height: 38px;
+    height: 38px;
+    background-color: transparent;
+    font-size: 13px;
+    color: #4a4a4a;
+    width: 180px;
+    position: absolute;
+    left: 50px;
+    top: 0;
+    right: 50px;
+}

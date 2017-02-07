@@ -1,0 +1,51 @@
+extends layout
+block head
+    meta(name='keywords', lang='en', content='PARTY,MC,DNACE,EDM,Electronic music,music Festival,show,SKY,RECORDS,Long Jian media,XI RECORDS,XI LABEL')
+    meta(name='keywords', lang='zh', content='舞曲,电子音乐,音乐节,演出,派对,电音,唱片,龙建传媒,独立音乐厂牌玺')
+    link(rel='stylesheet', href='/unslider/css/unslider.css')
+    link(rel='stylesheet', href='/unslider/css/unslider-dots.css')
+    link(rel='stylesheet', href='/stylesheets/index.css')
+    link(rel='stylesheet', href='/stylesheets/content.css')
+    link(rel='stylesheet', href='/stylesheets/dialog.css')
+block content
+    include ./dialog-contact.jade
+    div.banner
+        ul
+            each item in home.slider
+                li
+                    a(href= item.href)
+                        img(src= item.src)
+    div.container
+        div.content
+            each item in home.banners
+                div.content-item
+                    a(href= item.href)
+                        img.item-img.full(src= item.src)
+block footer
+    <!--[if lt IE 9]>
+    script(src="/javascripts/css3-mediaqueries.js")
+    <![endif]-->
+    script(src='/unslider/js/unslider-min.js')
+    script.
+        (function () {
+            $('.banner').unslider({
+                autoplay: false,
+                speed: 500,
+                delay: 20000,
+                arrows: {
+                    prev: '<div class="unslider-arrow prev"><a></a></div>',
+                    next: '<div class="unslider-arrow next"><a></a></div>'
+                }
+            });
+
+            var $mfp = $('#mfp');
+            var $mfp_close = $mfp.find('.mfp-close');
+            $mfp_close.on('click', function () {
+                $mfp.hide();
+            });
+
+            var $btn_main = $('#btn_main');
+            $btn_main.on('click', function () {
+                $mfp.show();
+            });
+        })();
