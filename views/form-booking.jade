@@ -8,29 +8,42 @@ block content
         .panel.panel-default
             .panel-heading 音乐发行
             .panel-body
-                form.form-horizontal(role='form')
+                form.form-horizontal(role='form', method='post', action='/form/booking')
                     fieldset
                         legend 联系人信息 Contact
                         .form-group
-                            label.col-sm-3.control-label 联系人姓名 Contact Name
-                            .col-sm-3
-                                input.form-control(type='text')
-                            label.col-sm-3.control-label 手机 Cell/Mobile Phone
-                            .col-sm-3
-                                input.form-control(type='text')
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |联系人姓名 Contact Name
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='')
                         .form-group
-                            label.col-sm-3.control-label 电子邮件 E-mail
-                            .col-sm-3
-                                input.form-control(type='text')
-                            label.col-sm-3.control-label 国家 Country
-                            .col-sm-3
-                                input.form-control(type='text')
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |手机 Cell/Mobile Phone
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='')
                         .form-group
-                            label.col-sm-3.control-label 城市 City
-                            .col-sm-3
-                                input.form-control(type='text')
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |电子邮件 E-mail
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='')
+                        .form-group
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |国家 Country
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='')
+                        .form-group
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |城市 City
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='')
+                        .form-group
                             label.col-sm-3.control-label 公司名称 Company Name
-                            .col-sm-3
+                            .col-sm-9
                                 input.form-control(type='text')
                         .form-group
                             label.col-sm-3.control-label 地址 Address
@@ -43,32 +56,83 @@ block content
                     fieldset
                         legend 活动信息 Offer Details
                         .form-group
-                            label.col-sm-3.control-label 艺人姓名 Contact Name
-                            .col-sm-3
-                                input.form-control(type='text')
-                            label.col-sm-3.control-label 艺人预算 Cell/Mobile Phone
-                            .col-sm-3
-                                input.form-control(type='text')
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |艺人姓名 Artist Name
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='input_contact')
                         .form-group
-                            label.col-sm-3.control-label 活动日期 E-mail
-                            .col-sm-3
-                                input.form-control(type='text')
-                            label.col-sm-3.control-label 活动名称 Country
-                            .col-sm-3
-                                input.form-control(type='text')
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |活动日期 Event Date
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='input_contact')
                         .form-group
-                            label.col-sm-3.control-label 演出时间 City
-                            .col-sm-3
-                                input.form-control(type='text')
-                            label.col-sm-3.control-label 场地信息 Company Name
-                            .col-sm-3
-                                input.form-control(type='text')
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |活动名称 Event Name
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='input_contact')
                         .form-group
-                            label.col-sm-3.control-label 国家 Address
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |演出时间 Set Time
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='input_contact')
+                        .form-group
+                            label.col-sm-3.control-label 艺人预算 Fee Offer
+                            .col-sm-9
+                                input.form-control(type='text')
+                    fieldset
+                        legend 场地信息 Venue Information
+                        .form-group
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |国家 Country
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='input_contact')
+                        .form-group
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |城市 City
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='input_contact')
+                        .form-group
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |街道地址 Street Address
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='input_contact')
+                        .form-group
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |场地&俱乐部名称 Venue&Club Name
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='input_contact')
+                        .form-group
+                            label.col-sm-3.control-label 网站 Website
                             .col-sm-9
                                 input.form-control(type='text')
                         .form-group
-                            label.col-sm-3.control-label 留言 Message
+                            label.col-sm-3.control-label 场地容量 Capacity
                             .col-sm-9
-                                textarea.form-control(rows='3')
+                                input.form-control(type='text')
+                        .form-group
+                            label.col-sm-3.control-label 活动门票价格 Event Ticket Price
+                            .col-sm-9
+                                input.form-control(type='text')
+                        .form-group
+                            label.col-sm-3.control-label
+                                span *&nbsp
+                                |最近的机场 Nearest Airport
+                            .col-sm-9
+                                input.form-control(type='text', required='required', name='contact', id='input_contact')
+                        .form-group
+                            label.col-sm-3.control-label 备用机场 Alternative Airport
+                            .col-sm-9
+                                input.form-control(type='text')
+                        .form-group
+                            label.col-sm-3.control-label 演出阵容 Proposed Lineup
+                            .col-sm-9
+                                input.form-control(type='text')
                     button.btn.btn-primary.pull-right 提交 Submit
