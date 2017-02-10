@@ -16,7 +16,7 @@ router.post('/business', (req, res) => {
 });
 
 router.get('/booking', (req, res) => {
-    res.render('form-booking');
+    res.render('form-booking', {path: 'form/booking'});
 });
 
 router.post('/booking', (req, res) => {
