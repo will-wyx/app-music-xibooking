@@ -6,133 +6,154 @@ block head
 block content
     .container
         .panel.panel-default
-            .panel-heading 音乐发行
+            .panel-heading 预订
             .panel-body
-                form.form-horizontal(role='form', method='post', action='/form/booking')
+                form#frm_main.form-horizontal(role='form', method='post', action='/form/booking')
                     fieldset
                         legend 联系人信息 Contact
-                        .form-group
+                        .form-group#grp_contact
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |联系人姓名 Contact Name
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='')
-                        .form-group
+                                input.form-control(type='text', required='required', name='contact')
+                        .form-group#grp_mobile
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |手机 Cell/Mobile Phone
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='')
-                        .form-group
+                                input.form-control(type='text', required='required', name='mobile')
+                        .form-group#grp_email
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |电子邮件 E-mail
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='')
-                        .form-group
+                                input.form-control(type='text', required='required', name='email')
+                        .form-group#grp_country
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |国家 Country
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='')
-                        .form-group
+                                input.form-control(type='text', required='required', name='country')
+                        .form-group#grp_city
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |城市 City
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='')
-                        .form-group
+                                input.form-control(type='text', required='required', name='city')
+                        .form-group#grp_company
                             label.col-sm-3.control-label 公司名称 Company Name
                             .col-sm-9
-                                input.form-control(type='text')
-                        .form-group
+                                input.form-control(type='text', name='company')
+                        .form-group#grp_address
                             label.col-sm-3.control-label 地址 Address
                             .col-sm-9
-                                input.form-control(type='text')
-                        .form-group
+                                input.form-control(type='text', name='address')
+                        .form-group#grp_message
                             label.col-sm-3.control-label 留言 Message
                             .col-sm-9
-                                textarea.form-control(rows='3')
+                                textarea.form-control(rows='3', name='message')
                     fieldset
                         legend 活动信息 Offer Details
-                        .form-group
+                        .form-group#grp_artistName
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |艺人姓名 Artist Name
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='input_contact')
-                        .form-group
+                                input.form-control(type='text', required='required', name='artistName')
+                        .form-group#grp_eventDate
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |活动日期 Event Date
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='input_contact')
-                        .form-group
+                                input.form-control(type='text', required='required', name='eventDate')
+                        .form-group#grp_eventName
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |活动名称 Event Name
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='input_contact')
-                        .form-group
+                                input.form-control(type='text', required='required', name='eventName')
+                        .form-group#grp_setTime
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |演出时间 Set Time
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='input_contact')
-                        .form-group
+                                input.form-control(type='text', required='required', name='setTime')
+                        .form-group#grp_feeOffer
                             label.col-sm-3.control-label 艺人预算 Fee Offer
                             .col-sm-9
                                 input.form-control(type='text')
                     fieldset
                         legend 场地信息 Venue Information
-                        .form-group
+                        .form-group#grp_venueCountry
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |国家 Country
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='input_contact')
-                        .form-group
+                                input.form-control(type='text', required='required', name='venueCountry')
+                        .form-group#grp_venueCity
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |城市 City
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='input_contact')
-                        .form-group
+                                input.form-control(type='text', required='required', name='venueCity')
+                        .form-group#grp_venueStreet
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |街道地址 Street Address
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='input_contact')
-                        .form-group
+                                input.form-control(type='text', required='required', name='venueStreet')
+                        .form-group#grp_venueClub
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |场地&俱乐部名称 Venue&Club Name
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='input_contact')
-                        .form-group
+                                input.form-control(type='text', required='required', name='venueClub')
+                        .form-group#grp_website
                             label.col-sm-3.control-label 网站 Website
                             .col-sm-9
-                                input.form-control(type='text')
-                        .form-group
+                                input.form-control(type='text', name='website')
+                        .form-group#grp_capacity
                             label.col-sm-3.control-label 场地容量 Capacity
                             .col-sm-9
-                                input.form-control(type='text')
-                        .form-group
+                                input.form-control(type='text', name='capacity')
+                        .form-group#grp_eventTicketPrice
                             label.col-sm-3.control-label 活动门票价格 Event Ticket Price
                             .col-sm-9
-                                input.form-control(type='text')
-                        .form-group
+                                input.form-control(type='text', name='eventTicketPrice')
+                        .form-group#grp_nearestAirport
                             label.col-sm-3.control-label
                                 span *&nbsp
                                 |最近的机场 Nearest Airport
                             .col-sm-9
-                                input.form-control(type='text', required='required', name='contact', id='input_contact')
-                        .form-group
+                                input.form-control(type='text', required='required', name='nearestAirport')
+                        .form-group#grp_alternativeAirport
                             label.col-sm-3.control-label 备用机场 Alternative Airport
                             .col-sm-9
-                                input.form-control(type='text')
-                        .form-group
+                                input.form-control(type='text', name='alternativeAirport')
+                        .form-group#grp_proposedLineup
                             label.col-sm-3.control-label 演出阵容 Proposed Lineup
                             .col-sm-9
-                                input.form-control(type='text')
+                                input.form-control(type='text', name='proposedLineup')
                     button.btn.btn-primary.pull-right 提交 Submit
+block footer
+    script.
+        (function(){
+            var $frm_main = $('#frm_main');
+            var $frm_control = $('.form-control');
+            $frm_main.on('submit', function() {
+                for(var i = 0, len = $frm_control.length; i < len; ++i) {
+                    var item = $frm_control[i];
+                    var $item = $(item)
+                    var required = $item.attr('required');
+                    var field = $item.attr('name');
+                    var value = $item.val();
+                    if(required && !value) {
+                        var $grp = $('#grp_' + field);
+                        $grp.addClass('has-error');
+                        return false;
+                    }
+                }
+                return true;
+            });
+        })()
